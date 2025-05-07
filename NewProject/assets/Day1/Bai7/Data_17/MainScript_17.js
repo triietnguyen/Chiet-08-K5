@@ -20,16 +20,16 @@ cc.Class({
     },
 
     onCalculatePower() {
-        let hp = parseFloat(this.hpInput.string);  
-        let mana = parseFloat(this.manaInput.string);  
+        this.hp = parseFloat(this.hpInput.string);  
+        this.mana = parseFloat(this.manaInput.string);  
 
-        if (isNaN(hp) || isNaN(mana)) {
+        if (isNaN(this.hp) || isNaN(this.mana)) {
             this.resultLabel.string = "Vui lòng nhập giá trị hợp lệ!";
             return;
         }
 
-        let power = hp * mana;
+        this.power = this.hp * this.mana;
 
-        this.resultLabel.string = "Power: " + power;
+        this.resultLabel.string = "Power: " + this.power;
     }
 });
