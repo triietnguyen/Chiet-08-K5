@@ -8,14 +8,12 @@ cc.Class({
         energy: 50,
     },
 
-    onLoad() {
-        this.attack = Math.floor(Math.random() * 11) + 10;  
-        this.defense = Math.floor(Math.random() * 11) + 5;   
+    initStats() {
+        this.health = 100;
+        this.energy = 50;
+        this.attack = Math.floor(cc.random0To1() * 11) + 10;
+        this.defense = Math.floor(cc.random0To1() * 11) + 5;
     },
-
-    start() {},
-
-    update(dt) {},
 
     attackEnemy(enemy) {
         let damage = this.attack - enemy.defense;
