@@ -15,6 +15,11 @@ cc.Class({
         this.message = "";
     },
 
+    start () {
+        this.titleLabel.string = this.title;
+        this.messageLabel.string = this.message; 
+    },
+
     onStartGame () {
         this.messageLabel.string = "Game is starting...";  
     },
@@ -23,8 +28,4 @@ cc.Class({
         this.messageLabel.string = "Goodbye!"; 
     },
 
-    start () {
-        this.titleLabel.string = this.title;
-        this.messageLabel.string = this.message; 
-    }
 });
