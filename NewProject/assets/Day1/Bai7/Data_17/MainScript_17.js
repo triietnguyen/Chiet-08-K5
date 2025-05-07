@@ -12,7 +12,6 @@ cc.Class({
 
     onLoad() {
         this.result = "";
-
     },
 
     start() {
