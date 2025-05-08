@@ -28,6 +28,7 @@ cc.Class({
         ];
         
         this.selectedItem = null;
+        this.selectedIndex = null;
         this.showItem();
     },
 
@@ -43,20 +44,17 @@ cc.Class({
     },
 
     selectItem(index) {
-        console.log('index', index);
         this.selectedIndex = index;
         const item = this.inventory[index];
+        this.selectedItem = item;
+
         this.nameLabel.string = item.name;
         this.quantityLabel.string = "Số lượng: " + item.quantity;
         this.typeLabel.string = "Loại: " + item.type;
         this.effectLabel.string = item.effect;
-        this.selectedItem = item;
-        
-        if (item.type === "consumable" && item.quantity > 0) {
-            this.useButton.interactable = true;
-        } else {
-            this.useButton.interactable = false; 
-        }
+
+        this.useButton.interactable = item.type === "consumable" && item.quantity > 0;
+        this.deleteButton.interactable = true;
     },
 
     clearInfo() {
@@ -65,6 +63,9 @@ cc.Class({
         this.typeLabel.string = "";
         this.effectLabel.string = "";
         this.selectedItem = null;
+        this.selectedIndex = null;
+        this.useButton.interactable = false;
+        this.deleteButton.interactable = false;
     },
 
     useItem() {
@@ -82,29 +83,36 @@ cc.Class({
         }
 
         this.refreshUI();
-        this.useButton.interactable = false;
     },
 
     deleteItem() {
         if (this.selectedIndex != null) {
-            this.showMessage("Đã xóa " + this.inventory[this.selectedIndex].name);
+            const name = this.inventory[this.selectedIndex].name;
+            this.showMessage("Đã xóa " + name);
             this.inventory.splice(this.selectedIndex, 1);
             this.refreshUI();
-            this.deleteButton.interactable = false;
         }
-        
+    },
+
+    refreshUI() {
+        this.showItem();
+
+        if (this.selectedIndex != null && this.selectedIndex < this.inventory.length) {
+            this.selectItem(this.selectedIndex);
+        } else {
+            this.clearInfo();
+        }
     },
 
     showMessage(msg) {
         this.messageLabel.string = msg;
         this.messageLabel.node.active = true;
-    
+
         this.unschedule(this._hideMessage);
         this.scheduleOnce(this._hideMessage, 2);
     },
-    
+
     _hideMessage() {
         this.messageLabel.node.active = false;
     }
-    
 });

@@ -17,13 +17,13 @@
         "__id__": 2
       },
       {
-        "__id__": 34
-      },
-      {
         "__id__": 49
       },
       {
         "__id__": 45
+      },
+      {
+        "__id__": 34
       }
     ],
     "_active": false,
@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "362079d2-43aa-4eee-9568-806437365a6a"
+    "_id": "ad84e307-5540-4ada-8d7a-fb8df2726275"
   },
   {
     "__type__": "cc.Node",
@@ -1533,7 +1533,7 @@
       "__id__": 34
     },
     "component": "",
-    "_componentId": "7bd0f/JbKdGKYJkMoLQB/9r",
+    "_componentId": "16116yrV4RKmZbkb/Fmqhaq",
     "handler": "useItem",
     "customEventData": ""
   },
@@ -1593,10 +1593,10 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "14gZtHEYZOFrscD8OekRxZ"
+    "_id": "b0UUHSVqlDhYR39Na/o3PK"
   },
   {
-    "__type__": "7bd0f/JbKdGKYJkMoLQB/9r",
+    "__type__": "16116yrV4RKmZbkb/Fmqhaq",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1604,7 +1604,7 @@
     },
     "_enabled": true,
     "itemPrefab": {
-      "__uuid__": "4dfc4469-88a9-45ff-89c0-66c0796ae116"
+      "__uuid__": "d558b444-2b87-46f5-8425-2219996b2102"
     },
     "itemListNode": {
       "__id__": 8
@@ -1630,7 +1630,7 @@
     "messageLabel": {
       "__id__": 44
     },
-    "_id": "133ttetN5NsrV5FV/3z5o2"
+    "_id": "099IS+6+tAa7aqfx5yKfZJ"
   },
   {
     "__type__": "cc.Button",
@@ -1996,7 +1996,7 @@
       "__id__": 34
     },
     "component": "",
-    "_componentId": "7bd0f/JbKdGKYJkMoLQB/9r",
+    "_componentId": "16116yrV4RKmZbkb/Fmqhaq",
     "handler": "deleteItem",
     "customEventData": ""
   },
@@ -2329,9 +2329,7 @@
     "root": {
       "__id__": 49
     },
-    "asset": {
-      "__uuid__": "4dfc4469-88a9-45ff-89c0-66c0796ae116"
-    },
+    "asset": null,
     "fileId": "679cYYJ+5KYbuaGw5YAokf",
     "sync": false
   },
@@ -2406,9 +2404,7 @@
     "root": {
       "__id__": 49
     },
-    "asset": {
-      "__uuid__": "4dfc4469-88a9-45ff-89c0-66c0796ae116"
-    },
+    "asset": null,
     "fileId": "56rkfDlrFNz5amub3lOVeu",
     "sync": false
   }
