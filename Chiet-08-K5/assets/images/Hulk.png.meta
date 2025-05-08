@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "405f0587-45ff-4e3a-b8f4-2fa2fbc3d03e",
+  "uuid": "b44ff78f-1b72-4fb2-a302-57c0bddac9b6",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Hulk": {
       "ver": "1.0.4",
-      "uuid": "af87063d-8c05-4439-9ea6-749d83b79e12",
-      "rawTextureUuid": "405f0587-45ff-4e3a-b8f4-2fa2fbc3d03e",
+      "uuid": "49078a59-0587-4e3b-a3e2-6b6c36be2fa8",
+      "rawTextureUuid": "b44ff78f-1b72-4fb2-a302-57c0bddac9b6",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
