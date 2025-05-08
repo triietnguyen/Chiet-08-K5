@@ -1,37 +1,41 @@
+// Learn cc.Class:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
+//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
+// Learn Attribute:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
+//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
+// Learn life-cycle callbacks:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
+//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        questContainer: cc.Node,     
-        questItemPrefab: cc.Prefab,  
+        // foo: {
+        //     // ATTRIBUTES:
+        //     default: null,        // The default value will be used only when the component attaching
+        //                           // to a node for the first time
+        //     type: cc.SpriteFrame, // optional, default is typeof default
+        //     serializable: true,   // optional, default is true
+        // },
+        // bar: {
+        //     get () {
+        //         return this._bar;
+        //     },
+        //     set (value) {
+        //         this._bar = value;
+        //     }
+        // },
     },
 
-    onLoad() {
-        this.questList = [
-            { title: "Đánh bại quái vật", completed: false },
-            { title: "Thu thập 10 vàng", completed: false },
-            { title: "Nói chuyện với NPC", completed: false },
-        ];
+    // LIFE-CYCLE CALLBACKS:
 
-        this.displayQuests();
+    // onLoad () {},
+
+    start () {
+
     },
 
-    displayQuests() {
-        this.questContainer.removeAllChildren();
-
-        this.questList.forEach((quest, index) => {
-            const item = cc.instantiate(this.questItemPrefab);
-            const label = item.getComponent(cc.Label);
-            label.string = `${quest.completed ? "✅" : "⬜"} ${quest.title}`;
-
-            this.questContainer.addChild(item);
-        });
-    },
-
-    completeQuest(index) {
-        if (this.questList[index]) {
-            this.questList[index].completed = true;
-            this.displayQuests(); 
-        }
-    },
+    // update (dt) {},
 });
