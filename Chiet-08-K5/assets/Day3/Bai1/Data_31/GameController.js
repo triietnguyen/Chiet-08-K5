@@ -1,4 +1,4 @@
-const data = require('Data');
+const Data = require('Data');
 
 cc.Class({
     name: 'GameController',
