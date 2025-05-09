@@ -257,7 +257,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 300,
-      "height": 360.4
+      "height": 410.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -331,8 +331,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 9.417,
-      "y": 30.19999999999999,
+      "x": 3.258,
+      "y": 5.199999999999989,
       "z": 0
     },
     "_scale": {
@@ -394,7 +394,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": -19.726,
       "z": 0
     },
     "_scale": {
@@ -621,7 +621,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": -9.995,
-      "y": -155,
+      "y": -180,
       "z": 0
     },
     "_scale": {
@@ -715,7 +715,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 300,
-      "height": 360.4
+      "height": 410.4
     },
     "_resize": 1,
     "_N$layoutType": 2,
@@ -728,7 +728,7 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
+    "_N$paddingTop": 50,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
     "_N$spacingY": 10,
@@ -2014,8 +2014,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "Label",
-    "_N$string": "Label",
+    "_string": "",
+    "_N$string": "",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2056,7 +2056,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 97.87,
+      "width": 0,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2262,7 +2262,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 97.87,
+      "width": 0,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2308,8 +2308,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "Label",
-    "_N$string": "Label",
+    "_string": "",
+    "_N$string": "",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
