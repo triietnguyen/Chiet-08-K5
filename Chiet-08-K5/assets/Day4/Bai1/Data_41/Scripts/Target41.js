@@ -21,7 +21,7 @@ cc.Class({
         const lifeTime = 0.3 + Math.random() * 0.5;
         this.scheduleOnce(() => {
             if (!this.clicked) {
-                this.cleanup(); 
+                this.cleanup();
             }
         }, lifeTime);
     },
@@ -34,7 +34,7 @@ cc.Class({
         const score = this.score;
         this.node.emit('target-clicked', score);
 
-        this.cleanup(); 
+        this.cleanup();
     },
 
     cleanup() {

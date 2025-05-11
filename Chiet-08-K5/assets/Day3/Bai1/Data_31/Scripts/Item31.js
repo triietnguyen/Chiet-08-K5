@@ -1,32 +1,27 @@
-// cc.Class({
-//     name: 'Item',
-//     properties: {
-//         name: '',
-//         quantity: 0,
-//         type: '',
-//         effect: ''
-//     },
+// Item31.js
+cc.Class({
+    extends: cc.Component,
 
-//     ctor(name, quantity, type, effect) {
-//         this.name = name;
-//         this.quantity = quantity;
-//         this.type = type;
-//         this.effect = effect;
-//     },
+    properties: {
+        image: cc.Sprite,
+        countLabel: cc.Label,
+    },
 
-//     use() {
-//         if (this.type === 'consumable') {
-//             this.quantity -= 1;
-//             if (this.quantity <= 0) {
-//                 return true;
-//             }
-//         } else if (this.type === 'equipment') {
-//             return true; 
-//         }
-//         return false;
-//     },
+    init(data, onClickCallback) {
+        this.data = data;
+        this.countLabel.string = 'x' + data.quantity;
+        this.loadImage(data.imagePath);
 
-//     delete() {
-//         return true; 
-//     }
-// });
+        this.node.on('click', () => {
+            onClickCallback(this.data);
+        }, this);
+    },
+
+    loadImage(path) {
+        cc.loader.loadRes(path, cc.SpriteFrame, (err, spriteFrame) => {
+            if (!err) {
+                this.image.spriteFrame = spriteFrame;
+            }
+        });
+    },
+});
