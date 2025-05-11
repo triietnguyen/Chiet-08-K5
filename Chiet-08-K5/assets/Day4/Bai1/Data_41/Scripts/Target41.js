@@ -9,7 +9,7 @@ cc.Class({
         this.score = Math.floor(Math.random() * 10) + 1;
 
         if (this.scoreLabel) {
-            this.scoreLabel.string = this.score;
+            this.scoreLabel.string = this.score.toString();
         } else {
             cc.error('Score Label is null');
         }
@@ -18,20 +18,28 @@ cc.Class({
 
         this.node.on('touchend', this.onClick, this);
 
+        const lifeTime = 0.3 + Math.random() * 0.5;
         this.scheduleOnce(() => {
             if (!this.clicked) {
-                this.node.destroy();
+                this.cleanup(); 
             }
-        }, 1);
+        }, lifeTime);
     },
-
 
     onClick() {
         if (this.clicked) return;
 
         this.clicked = true;
-        const score = parseInt(this.scoreLabel.string);
+
+        const score = this.score;
         this.node.emit('target-clicked', score);
+
+        this.cleanup(); 
+    },
+
+    cleanup() {
+        this.node.off('touchend', this.onClick, this);
+
         this.node.destroy();
     }
 });
