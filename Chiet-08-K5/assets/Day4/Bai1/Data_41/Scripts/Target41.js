@@ -6,8 +6,13 @@ cc.Class({
     },
 
     onLoad() {
-        const score = Math.floor(Math.random() * 10) + 1;
-        this.scoreLabel.string = score.toString();
+        this.score = Math.floor(Math.random() * 10) + 1;
+
+        if (this.scoreLabel) {
+            this.scoreLabel.string = this.score;
+        } else {
+            cc.error('Score Label is null');
+        }
 
         this.clicked = false;
 
@@ -19,6 +24,7 @@ cc.Class({
             }
         }, 1);
     },
+
 
     onClick() {
         if (this.clicked) return;

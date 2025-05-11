@@ -44,6 +44,7 @@ cc.Class({
         target.setPosition(pos);
         this.gameArea.addChild(target);
 
+
         target.on('target-clicked', this.onTargetClicked, this);
     },
 
@@ -78,6 +79,9 @@ cc.Class({
     },
 
     restartGame() {
-        cc.director.loadScene(cc.director.getScene().name);
+        if (!cc.director._loadingScene) {
+            cc.director.loadScene(cc.director.getScene().name);
+        }
     }
+    
 });
