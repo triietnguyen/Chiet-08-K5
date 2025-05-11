@@ -2,27 +2,29 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        scoreLabel: cc.Label,
+        scoreLabel: cc.Label
     },
 
     onLoad() {
-        const scoreRandom = Math.floor(Math.random() * 10) + 1;
-        this.scoreLabel.string = scoreRandom.toString();
+        const score = Math.floor(Math.random() * 10) + 1;
+        this.scoreLabel.string = score.toString();
 
         this.clicked = false;
 
         this.node.on('touchend', this.onClick, this);
 
-        this.destroyFunction = this.scheduleOnce(() => {
-            if (this.clicked == false) {
+        this.scheduleOnce(() => {
+            if (!this.clicked) {
                 this.node.destroy();
             }
-        }, 1); 
+        }, 1);
     },
 
     onClick() {
+        if (this.clicked) return;
+
         this.clicked = true;
-        const score = Number(this.scoreLabel.string)        
+        const score = parseInt(this.scoreLabel.string);
         this.node.emit('target-clicked', score);
         this.node.destroy();
     }
