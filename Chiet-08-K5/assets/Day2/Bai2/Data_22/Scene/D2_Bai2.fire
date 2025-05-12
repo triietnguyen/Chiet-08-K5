@@ -2572,7 +2572,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "QuestList",
+    "_name": "QuestList22",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
