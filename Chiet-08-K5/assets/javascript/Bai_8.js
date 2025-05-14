@@ -35,6 +35,7 @@ function asyncParallel(arrays, callback) {
             console.log('results[index] la', results)
             completed++;
             console.log('completed la', completed)
+            console.log('arrays.length', arrays.length)
             if (completed === arrays.length) {
                 console.log('completed va array.length la', completed, arrays.length)
                 console.log('results la', results)
