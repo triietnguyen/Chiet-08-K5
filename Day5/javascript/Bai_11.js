@@ -14,8 +14,8 @@ function asyncFunc2() {
         console.log("Started asyncFunc2");
         setTimeout(() => {
             console.log("Completed asyncFunc2");
-            resolve(2);
-            // reject("Error in asyncFunc2");
+            // resolve(2);
+            reject("Error in asyncFunc2");
         }, 2000);
     });
 }

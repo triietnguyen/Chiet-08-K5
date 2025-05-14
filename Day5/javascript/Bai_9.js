@@ -2,8 +2,10 @@ function asyncFunc1() {
   return new Promise((resolve, reject) => {
       console.log("Started asyncFunc1");
       setTimeout(() => {
-          console.log("Completed asyncFunc1");
+          
           resolve(1); 
+          console.log("Completed asyncFunc1");
+          console.log("Completed asyncFunc4444");
       }, 3000);
   });
 }

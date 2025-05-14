@@ -7,6 +7,7 @@ function printNumbers(i) {
             i++
             printNumbers(i);  
         }, 1000);  
+        console.log("fasdf")
     }
 }
 
