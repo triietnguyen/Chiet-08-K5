@@ -30,15 +30,15 @@ function asyncFunc3() {
 
 asyncFunc1()
   .then(result1 => {
-      console.log(result1); 
+      console.log('result 1',result1); 
       return asyncFunc2(); 
   })
   .then(result2 => {
-      console.log(result2);
+      console.log('result 2',result2); 
       return asyncFunc3(); 
   })
   .then(result3 => {
-      console.log(result3);
+      console.log('result 3',result3); 
   })
   .catch(error => {
       console.error("Errorr: ", error); 
