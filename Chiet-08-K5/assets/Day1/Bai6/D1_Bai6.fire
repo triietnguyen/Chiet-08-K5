@@ -63,7 +63,7 @@
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "31c91bef-9cd9-4508-95d4-f6590a83b60f"
+    "_id": "20852f0a-c8e2-4aa4-82a9-8a8b1f05de56"
   },
   {
     "__type__": "cc.Node",
@@ -165,7 +165,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 439.9409051224949
+      "z": 585.4331729582806
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -689,7 +689,7 @@
       "__id__": 16
     },
     "component": "",
-    "_componentId": "0410aWKTiJPG7GyB7a2oNEV",
+    "_componentId": "fbd03kBUUFDI5XaTWL9WZIQ",
     "handler": "onStartGame",
     "customEventData": ""
   },
@@ -749,10 +749,10 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "0frTt4eg1CL7Ta48DmSAsT"
+    "_id": "5529E3JxhCgKQ1tRj1jyA6"
   },
   {
-    "__type__": "0410aWKTiJPG7GyB7a2oNEV",
+    "__type__": "fbd03kBUUFDI5XaTWL9WZIQ",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -771,7 +771,7 @@
     "messageLabel": {
       "__id__": 26
     },
-    "_id": "e0VWztiAVA+JrgdmS2xAjl"
+    "_id": "f5tALNQdBKCZnvKe7XJb9H"
   },
   {
     "__type__": "cc.Button",
@@ -1137,7 +1137,7 @@
       "__id__": 16
     },
     "component": "",
-    "_componentId": "0410aWKTiJPG7GyB7a2oNEV",
+    "_componentId": "fbd03kBUUFDI5XaTWL9WZIQ",
     "handler": "onExitGame",
     "customEventData": ""
   },

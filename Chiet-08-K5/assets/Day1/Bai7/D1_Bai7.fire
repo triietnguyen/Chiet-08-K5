@@ -63,7 +63,7 @@
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "dbd0bc9e-709d-4a6e-b75f-4d20b9c377f4"
+    "_id": "7625ba19-0025-43b7-89db-92ad8471e8a3"
   },
   {
     "__type__": "cc.Node",
@@ -165,7 +165,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 439.9409051224949
+      "z": 585.4331729582806
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -1591,7 +1591,7 @@
       "__id__": 38
     },
     "component": "",
-    "_componentId": "f754fyDS2FOwbxWs/c9XIjr",
+    "_componentId": "fd05fzeqndHcIKeTwP4WhfL",
     "handler": "onCalculatePower",
     "customEventData": ""
   },
@@ -1651,10 +1651,10 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "adALU/Gv9KYq2PRuq2JJ9M"
+    "_id": "e1hk6qphJJPaXaRnqMYfZR"
   },
   {
-    "__type__": "f754fyDS2FOwbxWs/c9XIjr",
+    "__type__": "fd05fzeqndHcIKeTwP4WhfL",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1673,6 +1673,6 @@
     "calculateButton": {
       "__id__": 36
     },
-    "_id": "fbCrbGC7lCkYSoc4k1g8NY"
+    "_id": "fcuCdumLZMd5r6nrqfPCU9"
   }
 ]

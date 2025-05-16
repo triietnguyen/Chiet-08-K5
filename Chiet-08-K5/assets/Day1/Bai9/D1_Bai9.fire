@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "b9e0314e-4ac8-4efa-b3b8-67726fa01eb4"
+    "_id": "803701c9-72ad-4355-8b88-c94d50188b51"
   },
   {
     "__type__": "cc.Node",
@@ -159,7 +159,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 454.6633369868303
+      "z": 585.4331729582806
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -683,7 +683,7 @@
       "__id__": 16
     },
     "component": "",
-    "_componentId": "341b9Nh+IdFwa8ji2tgjZbW",
+    "_componentId": "8a7aesmUdNN9IT8MbijJhTu",
     "handler": "onChangeState",
     "customEventData": ""
   },
@@ -743,10 +743,10 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "f5TghpwH5LP6kZaQG4hwVB"
+    "_id": "77KflGIf5H6K4JFy19LzqL"
   },
   {
-    "__type__": "341b9Nh+IdFwa8ji2tgjZbW",
+    "__type__": "8a7aesmUdNN9IT8MbijJhTu",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -759,6 +759,6 @@
     "changeStateButton": {
       "__id__": 14
     },
-    "_id": "3cGuYRz0NB/JrbIx7RLPwZ"
+    "_id": "554S64ObFBmpAEDIwj7i+T"
   }
 ]
