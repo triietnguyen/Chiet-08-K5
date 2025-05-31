@@ -1,5 +1,6 @@
 import ItemData31 from "ItemData31";
-
+import Item31 from "Item31"
+import EquipmentSlot from "EquipmentSlot"
 // InventoryManager.js
 cc.Class({
     extends: cc.Component,
@@ -26,13 +27,13 @@ cc.Class({
         cancelButton: cc.Button
     },
 
-    onLoad () {
+    onLoad() {
         this.selectedItemIndex = -1;
-        this.infoPanel.active = false; 
-        this.useButton.active = false; 
-        this.deleteButton.active = false; 
+        this.infoPanel.active = false;
+        this.useButton.active = false;
+        this.deleteButton.active = false;
         this.addForm.active = false;
-        
+
         this.searchText = "";
         this.searchTimeout = null;
 
@@ -43,7 +44,7 @@ cc.Class({
             new ItemData31("Captain", 1, "Equipment", "Tăng tốc độ", "images/Captain"),
             new ItemData31("clock", 2, "Equipment", "Tăng tốc độ hồi chiêu", "images/clock"),
             new ItemData31("Universal", 1, "Equipment", "Miễn nhiễm sát thương", "images/Universal"),
-            new ItemData31("white_clock", 1, "Equipment", "Tăng thời gian kỹ năng", "images/white_clock"),
+            new ItemData31("whiteClock", 1, "Equipment", "Tăng thời gian kỹ năng", "images/whiteClock"),
         ];
         this.searchField.node.off('text-changed', this.onSearchTextChanged, this);
         this.searchField.node.on('text-changed', this.onSearchTextChanged, this);
@@ -61,19 +62,19 @@ cc.Class({
 
     onQuantityInputChanged(event) {
         const currentText = event.string;
-    
+
         if (!/^\d*$/.test(currentText)) {
             this.itemQuantityInput.string = currentText.replace(/[^\d]/g, '');
         }
     },
 
-    onCloseForm(){
+    onCloseForm() {
         this.addForm.active = false;
         console.log("Form đã được đóng");
     },
-    
 
-    onOpenForm(){
+
+    onOpenForm() {
         this.addForm.active = true;
         this.infoPanel.active = false;
     },
@@ -81,34 +82,45 @@ cc.Class({
     onSearchTextChanged(event) {
 
         if (this.searchTimeout) {
-            this.unschedule(this.searchTimeout); 
+            this.unschedule(this.searchTimeout);
         }
 
         this.searchText = event.string.toLowerCase();
 
         this.searchTimeout = this.scheduleOnce(() => {
-            this.renderItems(); 
+            this.renderItems();
         }, 2);
 
     },
 
     renderItems() {
         this.content.removeAllChildren();
-        
+
         const filteredItems = this.items.filter(item => item.name.toLowerCase().includes(this.searchText));
-    
+
         filteredItems.forEach((item, index) => {
             const itemNode = cc.instantiate(this.itemTemplate);
-    
-            const itemScript = itemNode.getComponent("Item31");
-            itemScript.init(item, () => this.selectItem(index));
+
+            const itemScript = itemNode.getComponent(Item31);
+            itemScript.init(item, () => this.selectItem(index), this);
+            // itemScript.init(item)
 
             this.content.addChild(itemNode);
         });
     },
 
+    removeItemByName(name) {
+        const idx = this.items.findIndex(i => i.name === name);
+        if (idx >= 0) {
+            this.items.splice(idx, 1);
+            this.renderItems();
+        }
+    },
+
     selectItem(index) {
+        console.log('index', index)
         const item = this.items[index];
+        console.log("item", item)
         this.selectedItemIndex = index;
         this.notificationLabel.string = ""
 
@@ -124,8 +136,8 @@ cc.Class({
         });
 
         this.infoPanel.active = true;
-        this.useButton.active = true; 
-        this.deleteButton.active = true; 
+        this.useButton.active = true;
+        this.deleteButton.active = true;
 
         this.onCloseForm();
     },
@@ -138,19 +150,14 @@ cc.Class({
             if (item.quantity <= 0) {
                 this.items.splice(this.selectedItemIndex, 1);
                 this.infoPanel.active = false;
-                this.useButton.active = false; 
-                this.deleteButton.active = false; 
-
+                this.useButton.active = false;
+                this.deleteButton.active = false;
             }
+            this.renderItems();
         } else if (item.type === "Equipment") {
-            this.infoPanel.active = false;
-            this.useButton.active = false; 
-            this.deleteButton.active = false; 
-            this.notificationLabel.string = `Đã trang bị ${item.name}`;
-            this.scheduleNotificationHide(); 
-            this.items.splice(this.selectedItemIndex, 1);
+
+            this.equipItemFromInventory(this.selectedItemIndex);
         }
-        this.renderItems();
     },
 
     onClickDelete() {
@@ -158,8 +165,8 @@ cc.Class({
         this.items.splice(this.selectedItemIndex, 1);
         this.selectedItemIndex = -1;
         this.infoPanel.active = false;
-        this.useButton.active = false; 
-        this.deleteButton.active = false; 
+        this.useButton.active = false;
+        this.deleteButton.active = false;
         this.renderItems();
     },
 
@@ -167,46 +174,106 @@ cc.Class({
         const name = this.itemNameInput.string;
         const quantity = parseInt(this.itemQuantityInput.string, 10);
         const effect = this.itemEffectInput.string;
-    
+
         if (!name || isNaN(quantity) || !effect) {
             this.notificationLabel.string = "Vui lòng điền đầy đủ thông tin!";
-            this.scheduleNotificationHide(); 
+            this.scheduleNotificationHide();
             return;
         }
-    
+
         let type = '';
         if (this.consumableToggle.isChecked) {
             type = 'Consumable';
         } else if (this.equipmentToggle.isChecked) {
             type = 'Equipment';
         }
-    
+
         if (!type) {
             this.notificationLabel.string = "Vui lòng chọn loại vật phẩm!";
-            this.scheduleNotificationHide(); 
+            this.scheduleNotificationHide();
             return;
         }
-    
+
         const newItem = new ItemData31(name, quantity, type, effect, "images/default_item");
         this.items.push(newItem);
         this.addForm.active = false;
-        
+
         this.itemNameInput.string = '';
         this.itemQuantityInput.string = '';
         this.itemEffectInput.string = '';
         this.consumableToggle.isChecked = false;
         this.equipmentToggle.isChecked = false;
-    
+
         this.renderItems();
         this.notificationLabel.string = `Đã thêm vật phẩm ${name}`;
-        this.scheduleNotificationHide(); 
+        this.scheduleNotificationHide();
     },
-    
+
     scheduleNotificationHide() {
         this.scheduleOnce(() => {
-            this.notificationLabel.string = ""; 
-        }, 2); 
+            this.notificationLabel.string = "";
+        }, 2);
+    },
+
+    equipItemFromInventory(itemIndex) {
+        const item = this.items[itemIndex];
+        if (item.type !== 'Equipment') return;
+
+        let equipmentSlots = cc.find("Canvas/Background/BodyLayout/EquipmentPanel").children;
+        let equipped = false;
+
+        // 1. Tìm slot phù hợp TRỐNG
+        for (let slot of equipmentSlots) {
+            let slotScript = slot.getComponent('EquipmentSlot');
+            if (!slotScript.currentItem && slotScript.acceptItem({ type: item.type })) {
+                const itemNode = cc.instantiate(this.itemTemplate);
+                const itemScript = itemNode.getComponent('Item31');
+                itemScript.init(item, () => this.selectItem(itemIndex), this);
+                this.node.addChild(itemNode);
+
+                slotScript.equip(itemScript);
+
+                this.items.splice(itemIndex, 1);
+                equipped = true;
+                break;
+            }
+        }
+
+
+        if (!equipped) {
+            for (let slot of equipmentSlots) {
+                let slotScript = slot.getComponent('EquipmentSlot');
+                if (slotScript.acceptItem({ type: item.type })) {
+                    const itemNode = cc.instantiate(this.itemTemplate);
+                    const itemScript = itemNode.getComponent('Item31');
+                    itemScript.init(item, () => this.selectItem(itemIndex), this);
+                    this.node.addChild(itemNode);
+
+                    slotScript.equip(itemScript);
+
+                    this.items.splice(itemIndex, 1);
+                    equipped = true;
+                    break;
+                }
+            }
+        }
+
+        if (equipped) {
+            this.selectedItemIndex = -1;
+            this.infoPanel.active = false;
+            this.useButton.active = false;
+            this.deleteButton.active = false;
+            this.renderItems();
+
+            this.notificationLabel.string = `Đã trang bị ${item.name}`;
+            this.scheduleNotificationHide();
+        } else {
+            this.notificationLabel.string = "Không có slot phù hợp để trang bị!";
+            this.scheduleNotificationHide();
+        }
     }
-    
+
+
+
 });
 

@@ -284,6 +284,22 @@
     "sync": false
   },
   {
+    "__type__": "cd4fbyIbcJFp6wxXUufr3pa",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "image": {
+      "__id__": 3
+    },
+    "countLabel": {
+      "__id__": 6
+    },
+    "_id": ""
+  },
+  {
     "__type__": "cc.Button",
     "_name": "",
     "_objFlags": 0,
@@ -347,22 +363,6 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": null,
-    "_id": ""
-  },
-  {
-    "__type__": "cd4fbyIbcJFp6wxXUufr3pa",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "image": {
-      "__id__": 3
-    },
-    "countLabel": {
-      "__id__": 6
-    },
     "_id": ""
   },
   {
