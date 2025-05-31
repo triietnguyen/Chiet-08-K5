@@ -31,15 +31,6 @@ cc.Class({
         item.node.scale = 1;
         item.isEquipped = true;
 
-        // Nếu có reference InventoryManager thì gọi remove item
-        if (item.inventoryManager) {
-            item.inventoryManager.removeItemByName(item.data.name);
-        }
-
-        console.log("Equipped item:", item.data.name, "to slot:", this.node.name);
-        console.log("Item parent:", item.node.parent.name);
-
-        // Gọi hàm update chỉ số tướng nếu cần
     },
 
 
