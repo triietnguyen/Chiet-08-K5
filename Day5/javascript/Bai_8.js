@@ -28,26 +28,16 @@ function asyncFunc3() {
 
 async function asyncParallel(arrays) {
     let results = [];
-    let completed = 0;
     sum = 0;
 
-    const promises = arrays.map((element, index) => {
-        console.log(element, index)
-        let a = element().then(result => {
-            console.log('result', result)
-            results[index] = result;
-            sum = sum + result;
-            completed++;
-        });
-        console.log('a',a)
-        return a;
+    const promises = arrays.map(async (element, index) => {
+        const result = await element();
+        console.log('result', result)
+        results[index] = result;
+        sum = sum + result;
+        return result
     });
-
-    console.log('promises', promises)
-
     await Promise.all(promises);
-
-    console.log('ket qua mang la',results)
     return sum;
 
 }
