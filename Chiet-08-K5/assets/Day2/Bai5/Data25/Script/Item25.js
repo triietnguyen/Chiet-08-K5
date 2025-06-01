@@ -6,20 +6,25 @@ cc.Class({
         image: cc.Sprite,
     },
 
-    init(data, onClickCallback) {
-        this.data = data;
-        this.loadImage(data.imagePath);
-
+    init(data, callback) {
+        console.log('callback', callback)
+        this.data = data
+        this.loadImage(data.image)
         this.node.on('click', () => {
-            onClickCallback(this.data);
-        }, this);
+            callback()
+        }, this)
     },
 
     loadImage(path) {
+        if (!path) return
         cc.loader.loadRes(path, cc.SpriteFrame, (err, spriteFrame) => {
-            if (!err) {
-                this.image.spriteFrame = spriteFrame;
+            if (err) {
+                console.log("Lỗi tải ảnh", err)
+                return
             }
-        });
-    },
+            else {
+                this.image.spriteFrame = spriteFrame
+            }
+        })
+    }
 });

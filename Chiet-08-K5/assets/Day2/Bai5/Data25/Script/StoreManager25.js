@@ -1,4 +1,5 @@
 import ItemData25 from "ItemData25";
+import Item25 from "Item25"
 
 // InventoryManager.js
 cc.Class({
@@ -8,6 +9,7 @@ cc.Class({
         content: cc.Node,
         itemTemplate: cc.Prefab,
         infoPanel: cc.Node,
+        imageItem: cc.Node,
         nameLabel: cc.Label,
         priceLabel: cc.Label,
         useButton: cc.Node,
@@ -16,7 +18,7 @@ cc.Class({
     },
 
     onLoad() {
-        this.selectedItemIndex = -1;
+        this.selectedItemIndex = null;
         this.coins = 200;
         this.infoPanel.active = false;
         this.useButton.active = false;
@@ -28,80 +30,91 @@ cc.Class({
             new ItemData25("Captain", 200, "images/Captain"),
             new ItemData25("clock", 120, "images/clock"),
             new ItemData25("Universal", 80, "images/Universal"),
-            new ItemData25("white_clock", 90, "images/white_clock"),
         ];
+
+        this.useButton.on('click', this.onClickBuy, this)
 
         this.renderItems();
         this.updateCoins();
     },
 
-
     renderItems() {
-        this.content.removeAllChildren();
+        this.content.removeAllChildren()
 
         this.items.forEach((item, index) => {
-            const itemNode = cc.instantiate(this.itemTemplate);
-
-            const itemScript = itemNode.getComponent("Item25");
-            itemScript.init(item, () => this.selectItem(index));
-
-            this.content.addChild(itemNode);
-        });
+            this.itemNode = cc.instantiate(this.itemTemplate)
+            this.itemNode.mainScript = this.itemNode.getComponent(Item25)
+            this.itemNode.mainScript.init(item, () => this.clickItem(index))
+            this.content.addChild(this.itemNode)
+        })
     },
 
-    selectItem(index) {
-        const item = this.items[index];
-        this.selectedItemIndex = index;
-        this.notificationLabel.string = ""
-
-        this.nameLabel.string = item.name;
-        this.priceLabel.string = `Price: ${item.price}`;
-
-        const imageSprite = this.infoPanel.getChildByName("Image").getComponent(cc.Sprite);
-        cc.loader.loadRes(item.imagePath, cc.SpriteFrame, (err, spriteFrame) => {
-            if (!err) {
-                imageSprite.spriteFrame = spriteFrame;
+    clickItem(index) {
+        this.item = this.items[index]
+        this.selectedItemIndex = index
+        console.log('item chon la', this.selectedItemIndex)
+        this.nameLabel.string = this.item.name
+        console.log('Name label', this.nameLabel.string)
+        this.priceLabel.string = this.item.price
+        console.log('Price Label', this.priceLabel.string)
+        cc.loader.loadRes(this.item.image, cc.SpriteFrame, (err, spriteFrame) => {
+            if (err) {
+                console.log("Lỗi tải ảnh", err)
+                return
             }
-        });
-
-        this.infoPanel.active = true;
-        this.useButton.active = true;
-
+            else {
+                this.spriteItem = this.imageItem.getComponent(cc.Sprite)
+                this.spriteItem.spriteFrame = spriteFrame
+            }
+        })
+        this.showPanel()
+        this.showButton()
     },
 
-    hiddenInfoPanel() {
-        this.infoPanel.active = false;
-        this.useButton.active = false;
+    showPanel() {
+        this.infoPanel.active = true
+    },
+
+    hiddenPanel() {
+        this.infoPanel.active = false
+    },
+
+    showButton() {
+        this.useButton.active = true
     },
 
     onClickBuy() {
-        if (this.selectedItemIndex === -1) return;
-        const item = this.items[this.selectedItemIndex];
-        this.buyItem(item);
+        if (this.selectedItemIndex == -1) return
+        this.item = this.items[this.selectedItemIndex]
+
+        this.buyItem(this.item)
     },
 
     buyItem(item) {
         if (this.coins >= item.price) {
-            this.coins -= item.price;
-            this.items.splice(this.selectedItemIndex, 1);
-            this.hiddenInfoPanel();
-            this.showNotification(`Đã mua ${item.name}`);
+            this.coins -= item.price
+            this.items.splice(this.selectedItemIndex, 1)
+            this.hiddenPanel()
+            this.showNotification("Đã mua thành công vật phẩm ", item.name)
         } else {
-            this.showNotification("Không đủ xu để mua!");
+            this.showNotification("Không đủ xu để mua")
         }
-
-        this.renderItems();
-        this.updateCoins();
+        this.renderItems()
+        this.updateCoins()
     },
 
     updateCoins() {
-        this.coinsLabel.string = `Coins: ${this.coins}`;
+        this.coinsLabel.string = this.coins;
     },
 
     showNotification(message) {
         this.notificationLabel.string = message;
         this.scheduleOnce(() => {
-            this.notificationLabel.string = "";
-        }, 2);
+            this.notificationLabel.string = ""
+        }, 2)
     }
+
+
+
+
 });
